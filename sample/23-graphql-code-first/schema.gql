@@ -4,7 +4,7 @@
 
 directive @upper on FIELD_DEFINITION
 
-"""recipe """
+"""recipe"""
 type Recipe {
   id: ID!
   description: String
@@ -18,7 +18,7 @@ scalar Date
 
 type Query {
   recipe(id: String!): Recipe!
-  recipes(skip: Int = 0, take: Int = 25): [Recipe!]!
+  recipes(skip: Int! = 0, take: Int! = 25): [Recipe!]!
 }
 
 type Mutation {

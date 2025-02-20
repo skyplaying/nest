@@ -117,13 +117,15 @@ describe('Shared utils', () => {
   describe('addLeadingSlash', () => {
     it('should return the validated path ("add / if not exists")', () => {
       expect(addLeadingSlash('nope')).to.be.eql('/nope');
+      expect(addLeadingSlash('{:nope}')).to.be.eql('/{:nope}');
     });
     it('should return the same path', () => {
       expect(addLeadingSlash('/nope')).to.be.eql('/nope');
+      expect(addLeadingSlash('{/:nope}')).to.be.eql('{/:nope}');
     });
     it('should return empty path', () => {
       expect(addLeadingSlash('')).to.be.eql('');
-      expect(addLeadingSlash(null)).to.be.eql('');
+      expect(addLeadingSlash(null!)).to.be.eql('');
       expect(addLeadingSlash(undefined)).to.be.eql('');
     });
   });
@@ -140,7 +142,7 @@ describe('Shared utils', () => {
     });
     it('should return / for empty path', () => {
       expect(normalizePath('')).to.be.eql('/');
-      expect(normalizePath(null)).to.be.eql('/');
+      expect(normalizePath(null!)).to.be.eql('/');
       expect(normalizePath(undefined)).to.be.eql('/');
     });
   });

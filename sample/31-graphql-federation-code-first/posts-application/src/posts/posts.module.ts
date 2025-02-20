@@ -1,3 +1,4 @@
+import { ApolloServerPluginInlineTrace } from '@apollo/server/plugin/inlineTrace';
 import {
   ApolloFederationDriver,
   ApolloFederationDriverConfig,
@@ -13,7 +14,10 @@ import { UsersResolver } from './users.resolver';
   imports: [
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
-      autoSchemaFile: true,
+      autoSchemaFile: {
+        federation: 2,
+      },
+      plugins: [ApolloServerPluginInlineTrace()],
       buildSchemaOptions: {
         orphanedTypes: [User],
       },
